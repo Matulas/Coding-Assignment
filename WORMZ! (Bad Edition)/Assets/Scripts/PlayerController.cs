@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
      Rigidbody rb;
      private float jumpForce = 400f;
      public float hp = 10f;
-    [SerializeField] private int playerIndex;
+    [SerializeField] public int playerTurnNumber;
    
 
    
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (TurnManager.GetInstance().IsItPlayerTurn(playerIndex))
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber))
         {
             if (Input.GetAxis("Horizontal") != 0)
             {
