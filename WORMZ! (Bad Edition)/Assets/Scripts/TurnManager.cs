@@ -7,13 +7,18 @@ public class TurnManager : MonoBehaviour
 {
     private static TurnManager instance;
     private int currentPlayerIndex = 1;
-    private float timeLeft = 10f;
+    private float timeLeft = 3f;
     [SerializeField] public CinemachineFreeLook  camera;
 
-    [SerializeField] Transform playerOne;
-    [SerializeField] Transform playerTwo;
-    [SerializeField] Transform playerThree;
-    [SerializeField] Transform playerFour;
+    [SerializeField] GameObject playerOne;
+    [SerializeField] GameObject playerTwo;
+    [SerializeField] GameObject playerThree;
+    [SerializeField] GameObject playerFour;
+    private Health pOneHealth;
+    private Health pTwoHealth;
+    private Health pThreeHealth;
+    private Health pFourHealth;
+
     private void Awake()
     {
         if (instance == null)
@@ -24,8 +29,15 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        camera.Follow = playerOne;
-        camera.LookAt = playerOne;
+        pOneHealth = playerOne.GetComponent<Health>();
+        pTwoHealth = playerTwo.GetComponent<Health>();
+        pThreeHealth = playerThree.GetComponent<Health>();
+        pFourHealth = playerFour.GetComponent<Health>();
+
+           camera.Follow = playerOne.transform;
+           camera.LookAt = playerOne.transform;
+             
+
     }
 
     private void Update()
@@ -58,9 +70,15 @@ public class TurnManager : MonoBehaviour
         if (currentPlayerIndex == 1)
         {
             currentPlayerIndex = 2;
+ 
+            if (pTwoHealth.IsDead())
+            {
+                Debug.Log("2 died");
+                ChangeTurn();
+            }
 
-            camera.Follow = playerTwo;
-            camera.LookAt = playerTwo;
+            camera.Follow = playerTwo.transform;
+            camera.LookAt = playerTwo.transform;
         }
             
 
@@ -68,23 +86,38 @@ public class TurnManager : MonoBehaviour
         {
             currentPlayerIndex = 3;
 
-            camera.Follow = playerThree; 
-            camera.LookAt = playerThree; 
+            if (pThreeHealth.IsDead())
+            {
+                ChangeTurn();
+            }
+            
+            camera.Follow = playerThree.transform; 
+            camera.LookAt = playerThree.transform; 
         }
        
 
         else if (currentPlayerIndex == 3)
-        { 
+        {
+           
             currentPlayerIndex = 4;
 
-            camera.Follow = playerFour;
-            camera.LookAt = playerFour;
+            if (pFourHealth.IsDead())
+            {
+                ChangeTurn();
+            }
+
+          camera.Follow = playerFour.transform;
+            camera.LookAt = playerFour.transform;
         }
         else
         {
+            if (pOneHealth.IsDead())
+            {
+                ChangeTurn();
+            }
             currentPlayerIndex = 1;
-            camera.Follow = playerOne;
-            camera.LookAt = playerOne;
+           camera.Follow = playerOne.transform;
+            camera.LookAt = playerOne.transform;
             
         }
             

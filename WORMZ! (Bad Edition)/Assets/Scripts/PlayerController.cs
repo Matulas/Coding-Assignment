@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
      private float speed = 4f;
-     Rigidbody rb;
-     private float jumpForce = 400f;
-     public float hp = 10f;
+     private Rigidbody rb;
+    private float jumpForce = 400f;
     [SerializeField] public int playerTurnNumber;
    
 
-   
+
+
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber))
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber)/* && Health.GetInstance().IsDead() == false*/)
         {
             if (Input.GetAxis("Horizontal") != 0)
             {
