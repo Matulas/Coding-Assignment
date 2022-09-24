@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber)/* && Health.GetInstance().IsDead() == false*/)
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber))
         {
             if (Input.GetAxis("Horizontal") != 0)
             {

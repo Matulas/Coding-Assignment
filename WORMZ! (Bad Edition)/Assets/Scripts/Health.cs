@@ -8,9 +8,11 @@ public class Health : MonoBehaviour
 
    public bool IsDead()
    {
-        if (hp <= 0)
-            return true;
-        else
-            return false;
+     return hp <= 0;
+      
    }
+    public void TakeDamage(float amount)
+    {
+        hp -= amount;
+    }
 }
