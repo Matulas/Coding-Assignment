@@ -7,7 +7,7 @@ public class TurnManager : MonoBehaviour
 {
     private static TurnManager instance;
     private int currentPlayerIndex = 1;
-    private float timeLeft = 100f;
+    private float timeLeft = 10f;
     [SerializeField] public CinemachineFreeLook  camera;
 
     [SerializeField] GameObject playerOne;
@@ -21,6 +21,8 @@ public class TurnManager : MonoBehaviour
 
     private void Awake()
     {
+       
+        
         if (instance == null)
         {
             instance = this;
@@ -42,7 +44,7 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
-        if (timeLeft > 0)
+        if (timeLeft >= 0)
         {
             timeLeft -= Time.deltaTime;
         }

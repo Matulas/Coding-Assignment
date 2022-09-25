@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-     private float speed = 4f;
+     private float speed = 07f;
      private Rigidbody rb;
     private float jumpForce = 400f;
     [SerializeField] public int playerTurnNumber;
-   
+    private float rotationSpeed = 100f;
 
 
 
@@ -41,6 +41,15 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector3.up * jumpForce);
             }
 
+            if (Input.GetKey("q"))
+            {
+                transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKey("e"))
+            {
+                transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+            }
 
         }
 
