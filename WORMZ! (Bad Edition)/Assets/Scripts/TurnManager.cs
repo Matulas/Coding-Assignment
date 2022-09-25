@@ -7,7 +7,7 @@ public class TurnManager : MonoBehaviour
 {
     private static TurnManager instance;
     private int currentPlayerIndex = 1;
-    private float timeLeft = 10f;
+    private float timeLeft = 15f;
     [SerializeField] public CinemachineFreeLook  camera;
 
     [SerializeField] GameObject playerOne;
@@ -52,7 +52,7 @@ public class TurnManager : MonoBehaviour
         {
             ChangeTurn();
 
-            timeLeft = 10f;
+            timeLeft = 15f;
         }
        
     }
