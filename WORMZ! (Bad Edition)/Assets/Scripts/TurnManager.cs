@@ -8,6 +8,7 @@ public class TurnManager : MonoBehaviour
     private static TurnManager instance;
     private int currentPlayerIndex = 1;
     private float timeLeft = 15f;
+    private float timeBetweenTurns = 5f;
     [SerializeField] public CinemachineFreeLook  camera;
 
     [SerializeField] GameObject playerOne;
@@ -19,6 +20,8 @@ public class TurnManager : MonoBehaviour
     private Health pThreeHealth;
     private Health pFourHealth;
 
+    public bool isNotTurn;
+
     private void Awake()
     {
        
@@ -29,6 +32,7 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
         pOneHealth = playerOne.GetComponent<Health>();
@@ -36,7 +40,8 @@ public class TurnManager : MonoBehaviour
         pThreeHealth = playerThree.GetComponent<Health>();
         pFourHealth = playerFour.GetComponent<Health>();
 
-           camera.Follow = playerOne.transform;
+
+        camera.Follow = playerOne.transform;
            camera.LookAt = playerOne.transform;
              
 
@@ -46,21 +51,35 @@ public class TurnManager : MonoBehaviour
     {
         if (timeLeft >= 0)
         {
-            timeLeft -= Time.deltaTime;
+            timeLeft -= 1 * Time.deltaTime;
+
         }
         else
         {
-            ChangeTurn();
-
-            timeLeft = 15f;
+            if (timeBetweenTurns > 0 && timeLeft <= 0)
+            {
+                isNotTurn = true;
+                Debug.Log(timeBetweenTurns);
+                timeBetweenTurns -= 1 * Time.deltaTime;
+               
+            }
+            else
+            {
+                ChangeTurn();
+                isNotTurn = false;
+                timeLeft = 15f;
+                timeBetweenTurns = 5f;
+            }
         }
        
     }
 
     public bool IsItPlayerTurn(int index)
     {
+
         return index == currentPlayerIndex;
-         
+            
+
     }
 
     public static TurnManager GetInstance()
@@ -76,7 +95,6 @@ public class TurnManager : MonoBehaviour
  
             if (pTwoHealth.IsDead())
             {
-                Debug.Log("2 died");
                 ChangeTurn();
             }
             else
@@ -134,7 +152,6 @@ public class TurnManager : MonoBehaviour
         }
             
     }
-
 
 
 }

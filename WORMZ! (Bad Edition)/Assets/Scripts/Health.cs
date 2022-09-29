@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-   public float hp;
 
-   public bool IsDead()
-   {
+    public float hp;
+    public bool IsDead()
+    {
      return hp <= 0;
-      
-   }
+
+    }
     public void TakeDamage(float amount)
     {
         hp -= amount;
     }
+
+
 }

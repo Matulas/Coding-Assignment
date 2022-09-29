@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
 
 
+
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber))
+        if (TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber) && TurnManager.GetInstance().isNotTurn == false)
         {
             if (Input.GetAxis("Horizontal") != 0)
             {
@@ -49,7 +50,10 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey("e"))
             {
                 transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+
             }
+
+
 
         }
 
@@ -61,7 +65,7 @@ public class PlayerController : MonoBehaviour
                 return false;
         }
 
-       
+
 
 
 
