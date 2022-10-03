@@ -19,6 +19,7 @@ public class TurnManager : MonoBehaviour
     private Health pTwoHealth;
     private Health pThreeHealth;
     private Health pFourHealth;
+    public List<RectTransform> playerImages;
 
     public bool isNotTurn;
 
@@ -43,8 +44,14 @@ public class TurnManager : MonoBehaviour
 
         camera.Follow = playerOne.transform;
            camera.LookAt = playerOne.transform;
-             
 
+        foreach(RectTransform rect in playerImages)
+        {
+            rect.localScale = Vector3.one * 0.12f;
+
+        }
+
+        playerImages[currentPlayerIndex - 1].localScale = Vector3.one * 0.17f;
     }
 
     private void Update()
@@ -150,6 +157,13 @@ public class TurnManager : MonoBehaviour
 
             
         }
+        foreach (RectTransform rect in playerImages)
+        {
+            rect.localScale = Vector3.one * 0.12f;
+
+        }
+
+        playerImages[currentPlayerIndex - 1].localScale = Vector3.one * 0.17f;
             
     }
 
