@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
      private float speed = 07f;
      private Rigidbody rb;
-    private float jumpForce = 400f;
     [SerializeField] public int playerTurnNumber;
     private float rotationSpeed = 100f;
 
@@ -37,11 +36,11 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown("space") && IsGrounded())
+          /*  if (Input.GetKeyDown("space") && IsGrounded())
             {
                 rb.AddForce(Vector3.up * jumpForce);
             }
-
+          */
             if (Input.GetKey("q"))
             {
                 transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
@@ -57,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        bool IsGrounded()
+        /*bool IsGrounded()
         {
             if (Physics.Raycast(transform.position, Vector3.down, 0.9f))
                 return true;
@@ -65,7 +64,7 @@ public class PlayerController : MonoBehaviour
                 return false;
         }
 
-
+        */
 
 
 

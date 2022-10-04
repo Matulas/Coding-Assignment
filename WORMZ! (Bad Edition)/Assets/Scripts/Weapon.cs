@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
    [SerializeField] private Transform startPoint;
     public GameObject laser;
     [SerializeField] public int playerTurnNumber;
-
+    float pokeForce = 300f;
 
 
 
@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("f") && TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber))
+        if (Input.GetKeyDown("f") && TurnManager.GetInstance().IsItPlayerTurn(playerTurnNumber) && TurnManager.GetInstance().isNotTurn == false)
         {
             Shoot();
         }
@@ -44,7 +44,8 @@ public class Weapon : MonoBehaviour
             {
                 target.TakeDamage(damage);
                 targetColor.material.color = Color.black;
-               
+                hit.rigidbody.AddForce(Vector3.up * pokeForce);
+
             }
         }
         else
