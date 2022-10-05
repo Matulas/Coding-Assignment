@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-    public float hp;
+    float hp = 3;
     public bool IsDead()
     {
      return hp <= 0;
@@ -16,5 +16,24 @@ public class Health : MonoBehaviour
         hp -= amount;
     }
 
+    private void Update()
+    {
+        if (hp == 2)
+        {
+          var color =  GetComponent<MeshRenderer>();
+          color.material.color = Color.gray;
+        }
+        else if ( hp == 1)
+        {
+            var color = GetComponent<MeshRenderer>();
+            color.material.color = Color.black;
+        }
 
+
+        if (IsDead())
+        {
+            Destroy(this.gameObject);
+        }
+            
+    }
 }
